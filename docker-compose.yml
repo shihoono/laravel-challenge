@@ -1,4 +1,7 @@
 version: "3.8"
+volumes:
+  db-store:
+  pma-session-store:
 services:
   app:
     build: ./infra/php
@@ -19,13 +22,6 @@ services:
     volumes:
       - db-store:/var/lib/mysql
 
-volumes:
-  db-store:
-
-volumes:
-  pma-session-store:
-
-services:
   pma:
     image: phpmyadmin/phpmyadmin:5.0.2
     environment:
@@ -36,3 +32,4 @@ services:
       - 8080:80
     volumes:
       - pma-session-store:/sessions
+      
