@@ -6,21 +6,31 @@ http://127.0.0.1:10080
 - PhpMyAdmin トップページ
 http://127.0.0.1:8080
 
- ### clone後のセットアップ手順
+ ### セットアップ手順
 
-1. $ docker-compose up -d --build
+1. このリポジトリの master ブランチをチェックアウトする
 
-2. appコンテナに入る
-$ docker-compose exec app bash
+2. docker-compose.yml があるディレクトリで下記のコマンドを実行する
+```$ docker-compose up -d --build
+```
 
-3. vendorディレクトリへライブラリ群をインストール
-[app] $ composer install
+3. 起動中の app コンテナの bash を実行する
+```$ docker-compose exec app bash
+```
 
-4. composer install 時は .env 環境変数ファイルは作成されないので、 .env.example を元にコピーして作成する
-[app] $ cp .env.example .env
+4. vendorディレクトリへライブラリ群をインストール
+```[app] $ composer install
+```
 
-5. .envにAPP_KEY=の値がないとのエラーが発生するので、下記コマンドでアプリケーションキーを生成する
-[app] $ php artisan key:generate
+5. composer install 時は .env 環境変数ファイルは作成されないので、 .env.example を元にコピーして作成する
+```[app] $ cp .env.example .env
+```
 
-6. マイグレーション実行
+6. .envにAPP_KEY=の値がないとのエラーが発生するので、下記コマンドでアプリケーションキーを生成する
+```[app] $ php artisan key:generate
+```
+
+7. マイグレーション実行
+```
 [app] $ php artisan migrate
+```
