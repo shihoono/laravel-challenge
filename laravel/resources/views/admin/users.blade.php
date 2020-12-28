@@ -17,8 +17,7 @@
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td>
-                    <a href="" class="btn btn-primary btn-sm">詳細</a>
-                    <a href="" class="btn btn-primary btn-sm">編集</a>
+                    {!! link_to_route('admin.edit', '編集', ['admin' => $user->id], ['class' => 'btn btn-primary btn-sm']) !!}
                     <a href="" class="btn btn-danger btn-sm">削除</a>
                 </td>
             </tr>
