@@ -11,8 +11,11 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    {{-- ログアウトのリンク --}}
-                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                    @if(Auth::user()->role === 'admin')
+                        <li class="nav-item">{!! link_to_route('register.get', 'Register', [], ['class' => 'nav-link']) !!}</li>
+                        <li class="nav-item">{!! link_to_route('admin.index', 'Users', [], ['class' => 'nav-link']) !!}</li>
+                    @endif
+                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout', [], ['class' => 'nav-link']) !!}</li>
                 @endif
             </ul>
         </div>
