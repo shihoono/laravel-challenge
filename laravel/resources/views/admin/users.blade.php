@@ -7,6 +7,7 @@
             <th>ID</th>
             <th>name</th>
             <th>email</th>
+            <th>role</th>
             <th>opration</th>
         </tr>
         </thead>
@@ -16,6 +17,7 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
+                <td>{{ $user->role }}</td>
                 <td>
                     {!! link_to_route('admin.edit', '編集', ['admin' => $user->id], ['class' => 'btn btn-primary btn-sm']) !!}
                     <a href="" class="btn btn-danger btn-sm">削除</a>
