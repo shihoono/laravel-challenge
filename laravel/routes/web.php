@@ -14,6 +14,7 @@
 Route::group(['middleware' => ['admin']], function () {
     Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register.get');
     Route::post('register', 'Auth\RegisterController@register')->name('register.post');
+    Route::resource('admin', 'AdminController');
 });
 
 Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
