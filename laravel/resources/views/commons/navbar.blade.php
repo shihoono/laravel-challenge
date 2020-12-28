@@ -10,8 +10,10 @@
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
-                {{-- ログアウトのリンク --}}
-                <li class="nav-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                @if (Auth::check())
+                    {{-- ログアウトのリンク --}}
+                    <li class="nav-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
+                @endif
             </ul>
         </div>
     </nav>
