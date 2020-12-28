@@ -11,7 +11,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 {{-- ログアウトのリンク --}}
-                <li class="nav-item"><a href="#" class="nav-link">Logout</a></li>
+                <li class="nav-item">{!! link_to_route('logout.get', 'Logout') !!}</li>
             </ul>
         </div>
     </nav>
