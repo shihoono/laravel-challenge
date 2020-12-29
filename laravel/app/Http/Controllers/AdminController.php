@@ -42,4 +42,12 @@ class AdminController extends Controller
 
         return redirect('admin');
     }
+
+    public function destroy($id)
+    {
+        $user = User::findOrFail($id);
+        $user->delete();
+
+        return redirect('admin');
+    }
 }

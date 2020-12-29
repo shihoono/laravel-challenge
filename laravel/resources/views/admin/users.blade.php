@@ -20,7 +20,6 @@
                 <td>{{ $user->role }}</td>
                 <td>
                     {!! link_to_route('admin.edit', '編集', ['admin' => $user->id], ['class' => 'btn btn-primary btn-sm']) !!}
-                    <a href="" class="btn btn-danger btn-sm">削除</a>
                 </td>
             </tr>
             @endforeach
