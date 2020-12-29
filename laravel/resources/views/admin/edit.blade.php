@@ -34,7 +34,9 @@
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('更新', ['class' => 'btn btn-primary btn-block', 'style' => 'margin-bottom: 20px']) !!}
+                {!! Form::model($user, ['route' => ['admin.update', $user->id], 'method' => 'put']) !!}
+                    {!! Form::submit('更新', ['class' => 'btn btn-primary btn-block', 'style' => 'margin-bottom: 20px']) !!}
+                {!! Form::close() !!}
 
                 {!! Form::model($user, ['route' => ['admin.destroy', $user->id], 'method' => 'delete']) !!}
                     {!! Form::submit('削除', ['class' => 'btn btn-danger btn-block']) !!}
