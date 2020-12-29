@@ -10,7 +10,7 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if (Auth::check())
-                    @if(Auth::user()->role === 'admin')
+                    @if(Auth::user()->role === 1)
                         <li class="nav-item">{!! link_to_route('register.get', 'Register', [], ['class' => 'nav-link']) !!}</li>
                         <li class="nav-item">{!! link_to_route('admin.index', 'Users', [], ['class' => 'nav-link']) !!}</li>
                     @endif

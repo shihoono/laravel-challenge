@@ -20,7 +20,7 @@ class Admin
             return redirect()->route('login');
         }
 
-        if(auth()->user()->role === 'admin'){
+        if(auth()->user()->role === 1){
             $this->auth = true;
         } else {
             $this->auth = false;

@@ -51,7 +51,7 @@ class AdminController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255',],
-            'role' => ['required', 'string', 'max:20'],
+            'role' => ['required', 'integer', 'gte:0', 'lte:1'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
