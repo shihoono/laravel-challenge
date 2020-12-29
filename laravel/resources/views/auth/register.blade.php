@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="text-center">
-        <h2>Sign up</h2>
+        <h2>ユーザー登録</h2>
     </div>
 
     <div class="row">
@@ -34,7 +34,7 @@
                     {!! Form::password('password_confirmation', ['class' => 'form-control']) !!}
                 </div>
 
-                {!! Form::submit('Sign up', ['class' => 'btn btn-primary btn-block']) !!}
+                {!! Form::submit('登録', ['class' => 'btn btn-primary btn-block']) !!}
             {!! Form::close() !!}
         </div>
     </div>

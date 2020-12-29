@@ -1,5 +1,5 @@
 <div class="page-header">
-    <h2>Users</h2>
+    <h2>ユーザー一覧</h2>
 </div>
     <table class="table table-striped table-hover">
         <thead>
