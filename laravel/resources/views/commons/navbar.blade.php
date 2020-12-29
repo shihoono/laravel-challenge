@@ -1,7 +1,10 @@
 <header class="mb-4">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         {{-- トップページへのリンク --}}
-        <a class="navbar-brand" href="/">Auction [ {{ Auth::user()->name }} ]</a>
+        <a class="navbar-brand" href="/">Auction</a>
+        @if (Auth::check()) 
+            <a class="navbar-brand" href="/">[ {{ Auth::user()->name }} ]</a>
+        @endif
 
         <div class="collapse navbar-collapse" id="nav-bar">
             <ul class="navbar-nav mr-auto"></ul>
