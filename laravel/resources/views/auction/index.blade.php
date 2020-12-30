@@ -18,9 +18,13 @@
                 @foreach ($biditems as $biditem)
                 <tr>
                     <td>{{ $biditem->name }}</td>
-                    <td></td>
-                    <td>{{ $biditem->endtime->format('Y/n/d g:i A') }}</td>
-                    <td></td>
+                    @if($biditem->finished === 1)
+                        <td>Finished</td>
+                    @else
+                        <td></td>
+                    @endif
+                    <td>{{ $biditem->formatted_endtime }}</td>
+                    <td>{!! link_to_route('auction.show', 'View', ['auction' => $biditem->id]) !!}</td>
                 </tr>
                 @endforeach
             </tbody>

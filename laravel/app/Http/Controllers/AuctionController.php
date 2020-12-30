@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Biditem;
+use App\User;
 use Illuminate\Support\Facades\Validator;
 
 class AuctionController extends Controller
@@ -19,7 +20,7 @@ class AuctionController extends Controller
         $biditems = Biditem::orderBy('created_at', 'desc')->paginate(10);
 
         return view('auction.index', [
-            'biditems' => $biditems
+            'biditems' => $biditems,
         ]);
     }
 
@@ -54,7 +55,7 @@ class AuctionController extends Controller
         $request->user()->biditems()->create([
             'name' => $request->name,
             'description' => $request->description,
-            'endtime' => $request->endtime
+            'endtime' => $request->endtime,
         ]);
 
         return redirect('/');
@@ -68,7 +69,15 @@ class AuctionController extends Controller
      */
     public function show($id)
     {
-        //
+        $biditem = Biditem::findOrFail($id);
+
+        $user_id = $biditem->user_id;
+        $user = User::findOrFail($user_id);
+
+        return view('auction.show', [
+            'biditem' => $biditem,
+            'user' => $user,
+        ]);
     }
 
     /**
