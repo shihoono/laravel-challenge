@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{ $biditem->name }}</td>
                     <td></td>
-                    <td>{{ $biditem->endtime }}</td>
+                    <td>{{ $biditem->endtime->format('Y/n/d g:i A') }}</td>
                     <td></td>
                 </tr>
                 @endforeach
