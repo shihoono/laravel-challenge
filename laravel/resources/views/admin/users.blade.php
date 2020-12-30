@@ -17,7 +17,11 @@
                 <td>{{ $user->id }}</td>
                 <td>{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
-                <td>{{ $user->role }}</td>
+                @if($user->role === 0)
+                    <td>user</td>
+                @elseif($user->role === 1)
+                    <td>admin</td>
+                @endif
                 <td>
                     {!! link_to_route('admin.edit', '編集', ['admin' => $user->id], ['class' => 'btn btn-primary btn-sm']) !!}
                 </td>
