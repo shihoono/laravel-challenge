@@ -16,6 +16,7 @@
                     @include('commons.sidebar')
                 </div>
                 <div class="col-md-9">
+                @include('commons.error_messages')    
                 @yield('content')
                 </div>
             </div>
