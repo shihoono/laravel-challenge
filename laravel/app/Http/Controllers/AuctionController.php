@@ -48,7 +48,7 @@ class AuctionController extends Controller
         $request->validate([
             'name' => 'required|max:100',
             'description' => 'required|max:1000',
-            'endtime' => 'required',
+            'endtime' => 'required|after:now',
         ]);
 
         $request->user()->biditems()->create([
