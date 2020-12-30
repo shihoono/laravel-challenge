@@ -16,19 +16,11 @@ class AuctionController extends Controller
      */
     public function index()
     {
-        $data = [];
-        if(\Auth::check()){
-            $user = \Auth::user();
+        $biditems = Biditem::orderBy('created_at', 'desc')->paginate(10);
 
-            $biditems = $user->biditems()->orderBy('created_at', 'desc')->paginate(10);
-        }
-
-        $data = [
-            'user' => $user,
-            'biditems' => $biditems,
-        ];
-
-        return view('auction.index', $data);
+        return view('auction.index', [
+            'biditems' => $biditems
+        ]);
     }
 
     /**
