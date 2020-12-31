@@ -27,7 +27,11 @@
         </tr>
         <tr>
             <th>終了した？</th>
-            <td></td>
+            @if($biditem->finished === 1)
+            <td>YES</td>
+            @elseif($biditem->finished === 0)
+            <td>NO</td>
+            @endif
         </tr>
     </table>
 

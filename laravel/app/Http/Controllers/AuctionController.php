@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Biditem;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
 class AuctionController extends Controller
@@ -73,6 +74,12 @@ class AuctionController extends Controller
 
         $user_id = $biditem->user_id;
         $user = User::findOrFail($user_id);
+
+        $current_time = new Carbon('now');
+        if($current_time > $biditem->endtime){
+            $biditem->finished = 1;
+            $biditem->save();
+        }
 
         return view('auction.show', [
             'biditem' => $biditem,
