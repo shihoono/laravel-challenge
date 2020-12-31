@@ -29,5 +29,5 @@
                 @endforeach
             </tbody>
         </table>
-
+        {{ $biditems->links() }}
 @endsection
