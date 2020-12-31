@@ -25,4 +25,9 @@ class Biditem extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])
             ->format('Y/n/d g:i A');
     }
+
+    public function bidrequests()
+    {
+        return $this->hasMany(Bidrequest::class);
+    }
 }
