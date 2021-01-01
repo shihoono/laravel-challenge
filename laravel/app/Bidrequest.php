@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Bidrequest extends Model
 {
-    protected $fillable = ['price'];
+    protected $fillable = ['price', 'user_id', 'biditem_id'];
 
     public function user()
     {

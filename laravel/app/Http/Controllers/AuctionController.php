@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Biditem;
 use App\User;
+use App\Bidrequest;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -119,6 +120,35 @@ class AuctionController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function bidForm($id)
+    {
+        $bidrequest = New Bidrequest;
+        $biditem = Biditem::findOrFail($id);
+
+        return view('auction.bidform', [
+            'bidrequest' => $bidrequest,
+            'biditem' => $biditem,
+        ]);
+    }
+
+    public function bid(Request $request)
+    {
+        $bidrequest = New Bidrequest;
+        
+        $user = \Auth::user();
+
+        $request->validate([
+            'price' => 'required',
+        ]);
+
+        $bidrequest->user_id = $user->id;
+        $bidrequest->biditem_id = $request->biditem_id;
+        $bidrequest->price = $request->price;
+        $bidrequest->save();
+
+        return redirect('/');
     }
 
     public function home2()
