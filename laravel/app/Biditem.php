@@ -30,4 +30,9 @@ class Biditem extends Model
     {
         return $this->hasMany(Bidrequest::class);
     }
+
+    public function bidinfo()
+    {
+        return $this->hasOne(Bidinfo::class);
+    }
 }
