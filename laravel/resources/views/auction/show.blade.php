@@ -52,7 +52,7 @@
                 <tbody>
                     <tr>
                         <td>{{ $bidinfo->user->name }}</td>
-                        <td>{{ $bidinfo->price }}</td>
+                        <td>{{ $bidinfo->price }}円</td>
                         <td>{{ $bidinfo->formatted_created_at }}</td>
                     </tr>
                 </tbody>
@@ -64,9 +64,11 @@
 
     <h4>入札情報</h4>
 
-    {!! link_to_route('auction.bidform', '入札する', ['id' => $biditem->id]) !!}
+    @if($biditem->finished === 0)
+        {!! link_to_route('auction.bidform', '<入札する>', ['id' => $biditem->id]) !!}
+    @endif
 
-    <table class="table table-striped" style="margin-bottom:40px;">
+    <table class="table table-striped" style="margin-top:10px;">
         <thead>
             <tr>
                 <th>入札者</th>
