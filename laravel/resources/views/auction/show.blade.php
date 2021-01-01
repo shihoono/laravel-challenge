@@ -44,7 +44,13 @@
             </tr>
         </thead>
         <tbody>
-            
+            @foreach ($bidinfo as $bidinfo)
+            <tr>
+                <td>{{ $bidinfo->user->name }}</td>
+                <td>{{ $bidinfo->price }}</td>
+                <td>{{ $bidinfo->formatted_created_at }}</td>
+            </tr>
+            @endforeach
         </tbody>
     </table>
 
