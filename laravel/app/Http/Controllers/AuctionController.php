@@ -172,6 +172,17 @@ class AuctionController extends Controller
         return redirect('/');
     }
 
+    public function home()
+    {
+        $user = \Auth::user();
+        $bidinfo = Bidinfo::where('user_id', $user->id)->paginate();
+
+        return view('auction.home',[
+            'bidinfo' => $bidinfo,
+            'user' => $user,
+        ]);
+    }
+
     public function home2()
     {
         $user = \Auth::user();
