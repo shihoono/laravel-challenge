@@ -172,7 +172,7 @@ class AuctionController extends Controller
     public function home2()
     {
         $user = \Auth::user();
-        $biditems = Biditem::find($user->id)->paginate(10);
+        $biditems = Biditem::where('user_id', $user->id)->paginate();
 
         return view('auction.home2',[
             'biditems' => $biditems,
