@@ -35,24 +35,28 @@
     </table>
 
     <h4>落札情報</h4>
-    <table class="table table-striped" style="margin-bottom:40px;">
-        <thead>
-            <tr>
-                <th>落札者</th>
-                <th>落札金額</th>
-                <th>落札日時</th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach ($bidinfo as $bidinfo)
-            <tr>
-                <td>{{ $bidinfo->user->name }}</td>
-                <td>{{ $bidinfo->price }}</td>
-                <td>{{ $bidinfo->formatted_created_at }}</td>
-            </tr>
-            @endforeach
-        </tbody>
-    </table>
+    @if($bidinfo->isNotEmpty())
+        @foreach ($bidinfo as $bidinfo)
+            <table class="table table-striped" style="margin-bottom:40px;">
+                <thead>
+                    <tr>
+                        <th>落札者</th>
+                        <th>落札金額</th>
+                        <th>落札日時</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{ $bidinfo->user->name }}</td>
+                        <td>{{ $bidinfo->price }}</td>
+                        <td>{{ $bidinfo->formatted_created_at }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        @endforeach
+    @elseif($bidinfo->isEmpty())
+    <p>落札はありません。</p>
+    @endif
 
     <h4>入札情報</h4>
 
