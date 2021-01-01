@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Biditem;
 use App\User;
 use App\Bidrequest;
+use App\Bidinfo;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -76,18 +77,32 @@ class AuctionController extends Controller
         $user_id = $biditem->user_id;
         $user = User::findOrFail($user_id);
 
+        $bidrequests = Bidrequest::where('biditem_id', $id)->get();
+        $newbidinfo = New Bidinfo;
+
         $current_time = new Carbon('now');
-        if($current_time > $biditem->endtime){
+        if($current_time > $biditem->endtime && $biditem->finished === 0){
             $biditem->finished = 1;
             $biditem->save();
+
+            $newbidinfo->biditem_id = $id;
+
+            $topBidrequest = Bidrequest::where('biditem_id', $id)->orderBy('price', 'desc')->first();
+
+            if(!empty($topBidrequest)){
+                $newbidinfo->user_id = $topBidrequest->user_id;
+                $newbidinfo->price = $topBidrequest->price;
+                $newbidinfo->save();
+            }
         }
 
-        $bidrequests = Bidrequest::where('biditem_id', $id)->get();
+        $bidinfo = Bidinfo::where('biditem_id', $id)->get();
 
         return view('auction.show', [
             'biditem' => $biditem,
             'user' => $user,
             'bidrequests' => $bidrequests,
+            'bidinfo' => $bidinfo,
         ]);
     }
 
