@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'AuctionController@index');
     Route::resource('auction', 'AuctionController');
     Route::get('home2', 'AuctionController@home2')->name('auction.home2');
+    Route::get('home', 'AuctionController@home')->name('auction.home');
     Route::get('{id}/bidform', 'AuctionController@bidForm')->name('auction.bidform');
     Route::post('bid', 'AuctionController@bid')->name('auction.bid');
 });
