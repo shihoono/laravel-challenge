@@ -3,8 +3,7 @@
 @section('content')
 
     <h2>{{ $biditem->name }}の情報</h2>
-
-    <table class="table table-bordered">
+    <table class="table table-bordered" style="margin-bottom: 40px;">
         <tr>
             <th>出品者</th>
             <td>{{ $user->name }}</td>
@@ -33,6 +32,43 @@
             <td>NO</td>
             @endif
         </tr>
+    </table>
+
+    <h4>落札情報</h4>
+    <table class="table table-striped" style="margin-bottom:40px;">
+        <thead>
+            <tr>
+                <th>落札者</th>
+                <th>落札金額</th>
+                <th>落札日時</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+
+    <h4>入札情報</h4>
+
+    {!! link_to_route('auction.bidform', '入札する', ['id' => $biditem->id]) !!}
+
+    <table class="table table-striped" style="margin-bottom:40px;">
+        <thead>
+            <tr>
+                <th>入札者</th>
+                <th>金額</th>
+                <th>入札日時</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($bidrequests as $bidrequest)
+                <tr>
+                    <td>{{ $bidrequest->user->name }}</td>
+                    <td>{{ $bidrequest->price }}円</td>
+                    <td>{{ $bidrequest->formatted_created_at}}</td>
+                </tr>
+                @endforeach
+            </tbody>
     </table>
 
 @endsection

@@ -82,9 +82,12 @@ class AuctionController extends Controller
             $biditem->save();
         }
 
+        $bidrequests = Bidrequest::where('biditem_id', $id)->get();
+
         return view('auction.show', [
             'biditem' => $biditem,
             'user' => $user,
+            'bidrequests' => $bidrequests,
         ]);
     }
 

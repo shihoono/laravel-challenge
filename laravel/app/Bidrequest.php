@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Carbon\Carbon;
+
 use Illuminate\Database\Eloquent\Model;
 
 class Bidrequest extends Model
@@ -16,5 +18,11 @@ class Bidrequest extends Model
     public function biditem()
     {
         return $this->belongsTo(Biditem::class);
+    }
+
+    public function getFormattedCreatedAtAttribute()
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])
+            ->format('Y/n/d g:i A');
     }
 }
