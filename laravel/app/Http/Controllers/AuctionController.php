@@ -143,7 +143,7 @@ class AuctionController extends Controller
         $user = \Auth::user();
 
         $request->validate([
-            'price' => 'required',
+            'price' => 'required|integer|gt:1',
         ]);
 
         $bidrequest->user_id = $user->id;
