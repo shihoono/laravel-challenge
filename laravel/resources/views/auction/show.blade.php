@@ -13,6 +13,10 @@
             <td>{{ $biditem->name}}</td>
         </tr>
         <tr>
+            <th>商品説明</th>
+            <td>{{ $biditem->description}}</td>
+        </tr>
+        <tr>
             <th>商品ID</th>
             <td>{{ $biditem->id}}</td>
         </tr>
