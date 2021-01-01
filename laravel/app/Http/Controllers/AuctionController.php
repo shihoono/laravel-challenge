@@ -154,18 +154,21 @@ class AuctionController extends Controller
     public function bid(Request $request)
     {
         $bidrequest = New Bidrequest;
-        
+
         $user = \Auth::user();
 
-        $request->validate([
-            'price' => 'required|integer|gt:1',
-        ]);
+        $biditem = Biditem::where('id', $request->biditem_id)->first();
+        if($biditem->finished === 0){
+        
+            $request->validate([
+                'price' => 'required|integer|gt:1',
+            ]);
 
-        $bidrequest->user_id = $user->id;
-        $bidrequest->biditem_id = $request->biditem_id;
-        $bidrequest->price = $request->price;
-        $bidrequest->save();
-
+            $bidrequest->user_id = $user->id;
+            $bidrequest->biditem_id = $request->biditem_id;
+            $bidrequest->price = $request->price;
+            $bidrequest->save();
+        }
         return redirect('/');
     }
 
