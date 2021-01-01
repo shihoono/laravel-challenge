@@ -24,4 +24,5 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', 'AuctionController@index');
     Route::resource('auction', 'AuctionController');
+    Route::get('home2', 'AuctionController@home2')->name('auction.home2');
 });

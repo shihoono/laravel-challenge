@@ -120,4 +120,15 @@ class AuctionController extends Controller
     {
         //
     }
+
+    public function home2()
+    {
+        $user = \Auth::user();
+        $biditems = Biditem::find($user->id)->paginate(10);
+
+        return view('auction.home2',[
+            'biditems' => $biditems,
+            'user' => $user,
+        ]);
+    }
 }
