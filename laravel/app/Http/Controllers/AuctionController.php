@@ -202,14 +202,19 @@ class AuctionController extends Controller
             'message' => 'required|string',
         ]);
         
-        $bidmessage->user_id = $user->id;
-        $bidmessage->bidinfo_id = $request->bidinfo_id;
-        $bidmessage->message = $request->message;
-        if($bidmessage->save()){
-            return back()->with('flash_success', 'メッセージを投稿しました');
-        }
+        $bidinfo = Bidinfo::findOrFail($request->bidinfo_id);
+        $biditem = Biditem::findOrFail($bidinfo->biditem_id);
+
+        if($user->id === $bidinfo->user_id || $user->id === $biditem->user_id){
+            $bidmessage->user_id = $user->id;
+            $bidmessage->bidinfo_id = $request->bidinfo_id;
+            $bidmessage->message = $request->message;
         
-        return back()->with('flash_error', 'もう一度やり直してください');
+            if($bidmessage->save()){
+                return back()->with('flash_success', 'メッセージを投稿しました');
+            }
+        }
+        return back()->with('flash_error', '権限がないか、もしくはもう一度やり直してください');
     }
 
     public function home()
