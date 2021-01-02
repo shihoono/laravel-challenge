@@ -56,13 +56,16 @@ class AuctionController extends Controller
             'endtime' => 'required|after:now',
         ]);
 
-        $request->user()->biditems()->create([
+        if($request->user()->biditems()->create([
             'name' => $request->name,
             'description' => $request->description,
             'endtime' => $request->endtime,
-        ]);
-
-        return redirect('/');
+        ]))
+        {
+            return redirect('/')->with('flash_success', '保存しました');
+        }
+        
+        return redirect('/')->with('flash_error', '保存に失敗しました');
     }
 
     /**
@@ -168,9 +171,11 @@ class AuctionController extends Controller
             $bidrequest->user_id = $user->id;
             $bidrequest->biditem_id = $request->biditem_id;
             $bidrequest->price = $request->price;
-            $bidrequest->save();
+            if($bidrequest->save()){
+                return back()->with('flash_success', '入札しました'); 
+            }
         }
-        return redirect('/');
+        return back()->with('flash_error', 'もう一度やり直してください');
     }
 
     public function msgForm($id)
@@ -200,9 +205,11 @@ class AuctionController extends Controller
         $bidMessage->user_id = $user->id;
         $bidMessage->bidinfo_id = $request->bidinfo_id;
         $bidMessage->message = $request->message;
-        $bidMessage->save();
+        if($bidMessage->save()){
+            return back()->with('flash_success', 'メッセージを投稿しました');
+        }
         
-        return back();
+        return back()->with('flash_error', 'もう一度やり直してください');
     }
 
     public function home()

@@ -42,9 +42,11 @@ class AdminController extends Controller
         $user->email = $request->email;
         $user->role = $request->role;
         $user->password = Hash::make($request->password);
-        $user->save();
+        if($user->save()){
+            return redirect('admin')->with('flash_success', '更新しました');
+        }
 
-        return redirect('admin');
+        return redirect('admin')->with('flash_error', 'もう一度やり直してください');
     }
 
     protected function validator(array $data)
@@ -60,8 +62,10 @@ class AdminController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        $user->delete();
+        if($user->delete()){
+            return redirect('admin')->with('flash_success', '削除しました');
+        }
 
-        return redirect('admin');
+        return redirect('admin')->with('flash_error', 'このユーザーは削除できません');
     }
 }

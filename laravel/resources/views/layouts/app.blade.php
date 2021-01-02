@@ -16,7 +16,20 @@
                     @include('commons.sidebar')
                 </div>
                 <div class="col-md-9">
-                @include('commons.error_messages')    
+                @include('commons.error_messages')   
+                
+                @if (session('flash_success'))
+                    <div class="flash_success bg-success text-center py-3 my-0">
+                        {{ session('flash_success') }}
+                    </div>
+                @endif
+
+                @if (session('flash_error'))
+                    <div class="flash_success bg-success text-center py-3 my-0">
+                        {{ session('flash_success') }}
+                    </div>
+                @endif
+
                 @yield('content')
                 </div>
             </div>
