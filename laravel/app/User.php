@@ -51,4 +51,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bidinfo::class);
     }
+
+    public function bidmessages()
+    {
+        return $this->hasMany(Bidmessage::class);
+    }
 }

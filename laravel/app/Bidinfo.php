@@ -25,4 +25,9 @@ class Bidinfo extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $this->attributes['created_at'])
             ->format('Y/n/d g:i A');
     }
+
+    public function bidmessages()
+    {
+        return $this->hasMany(Bidmessage::class);
+    }
 }
