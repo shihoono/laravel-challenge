@@ -45,13 +45,13 @@ return [
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
-        'numeric' => ':attribute は :value 以上でお願いします。',
+        'numeric' => 'The :attribute must be greater than :value.',
         'file' => 'The :attribute must be greater than :value kilobytes.',
         'string' => 'The :attribute must be greater than :value characters.',
         'array' => 'The :attribute must have more than :value items.',
     ],
     'gte' => [
-        'numeric' => 'The :attribute must be greater than or equal :value.',
+        'numeric' => 'The :attribute は　:value　以上でお願いします。',
         'file' => 'The :attribute must be greater than or equal :value kilobytes.',
         'string' => 'The :attribute must be greater than or equal :value characters.',
         'array' => 'The :attribute must have :value items or more.',

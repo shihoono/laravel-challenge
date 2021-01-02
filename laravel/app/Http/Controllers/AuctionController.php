@@ -162,7 +162,7 @@ class AuctionController extends Controller
         if($biditem->finished === 0){
         
             $request->validate([
-                'price' => 'required|integer|gt:1',
+                'price' => 'required|integer|gte:1',
             ]);
 
             $bidrequest->user_id = $user->id;
