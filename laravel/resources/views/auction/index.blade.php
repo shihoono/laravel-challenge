@@ -3,7 +3,7 @@
 @section('content')
 
     <h2>ミニオークション!</h2>
-    <h3>*出品されている商品</h3>
+    <h4>*出品されている商品</h4>
 
         <table class="table table-striped">
             <thead>

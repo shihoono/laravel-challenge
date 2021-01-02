@@ -3,7 +3,7 @@
 @section('content')
 
     <h2>{{ $user->name }}のホーム</h2>
-    <h4>落札情報</h4>
+    <h4>*落札情報</h4>
 
     <table class="table table-striped">
         <thead>
