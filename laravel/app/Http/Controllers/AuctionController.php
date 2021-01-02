@@ -8,6 +8,7 @@ use App\Biditem;
 use App\User;
 use App\Bidrequest;
 use App\Bidinfo;
+use App\Bidmessage;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 
@@ -172,6 +173,38 @@ class AuctionController extends Controller
         return redirect('/');
     }
 
+    public function msgForm($id)
+    {
+        $bidMessage = New Bidmessage;
+        $bidinfo = Bidinfo::findOrFail($id);
+
+        $messages = Bidmessage::where('bidinfo_id', $id)->orderBy('created_at', 'desc')->paginate(10);
+
+        return view('auction.msgform', [
+            'bidmessage' => $bidMessage,
+            'bidinfo' => $bidinfo,
+            'messages' => $messages,
+        ]);
+    }
+
+    public function msg(Request $request)
+    {
+        $bidMessage = New Bidmessage;
+
+        $user = \Auth::user();
+        
+        $request->validate([
+            'message' => 'required|string',
+        ]);
+
+        $bidMessage->user_id = $user->id;
+        $bidMessage->bidinfo_id = $request->bidinfo_id;
+        $bidMessage->message = $request->message;
+        $bidMessage->save();
+        
+        return back();
+    }
+
     public function home()
     {
         $user = \Auth::user();
@@ -186,7 +219,7 @@ class AuctionController extends Controller
     public function home2()
     {
         $user = \Auth::user();
-        $biditems = Biditem::where('user_id', $user->id)->paginate();
+        $biditems = Biditem::where('user_id', $user->id)->with('bidinfo')->paginate();
 
         return view('auction.home2',[
             'biditems' => $biditems,

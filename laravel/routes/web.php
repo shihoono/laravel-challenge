@@ -28,4 +28,6 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('home', 'AuctionController@home')->name('auction.home');
     Route::get('{id}/bidform', 'AuctionController@bidForm')->name('auction.bidform');
     Route::post('bid', 'AuctionController@bid')->name('auction.bid');
+    Route::get('{id}/msg', 'AuctionController@msgForm')->name('auction.msgform');
+    Route::post('msg', 'AuctionController@msg')->name('auction.msg');
 });
