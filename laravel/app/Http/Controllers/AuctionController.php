@@ -82,21 +82,21 @@ class AuctionController extends Controller
         $user = User::findOrFail($user_id);
 
         $bidrequests = Bidrequest::where('biditem_id', $id)->orderBy('created_at', 'desc')->get();
-        $newbidinfo = New Bidinfo;
+        $new_bidinfo = New Bidinfo;
 
         $current_time = new Carbon('now');
         if($current_time > $biditem->endtime && $biditem->finished === 0){
             $biditem->finished = 1;
             $biditem->save();
 
-            $newbidinfo->biditem_id = $id;
+            $new_bidinfo->biditem_id = $id;
 
-            $topBidrequest = Bidrequest::where('biditem_id', $id)->orderBy('price', 'desc')->first();
+            $top_bidrequest = Bidrequest::where('biditem_id', $id)->orderBy('price', 'desc')->first();
 
-            if(!empty($topBidrequest)){
-                $newbidinfo->user_id = $topBidrequest->user_id;
-                $newbidinfo->price = $topBidrequest->price;
-                $newbidinfo->save();
+            if(!empty($top_bidrequest)){
+                $new_bidinfo->user_id = $top_bidrequest->user_id;
+                $new_bidinfo->price = $top_bidrequest->price;
+                $new_bidinfo->save();
             }
         }
 
@@ -180,13 +180,13 @@ class AuctionController extends Controller
 
     public function msgForm($id)
     {
-        $bidMessage = New Bidmessage;
+        $bidmessage = New m;
         $bidinfo = Bidinfo::findOrFail($id);
 
         $messages = Bidmessage::where('bidinfo_id', $id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('auction.msgform', [
-            'bidmessage' => $bidMessage,
+            'bidmessage' => $bidmessage,
             'bidinfo' => $bidinfo,
             'messages' => $messages,
         ]);
@@ -194,7 +194,7 @@ class AuctionController extends Controller
 
     public function msg(Request $request)
     {
-        $bidMessage = New Bidmessage;
+        $bidmessage = New Bidmessage;
 
         $user = \Auth::user();
         
@@ -202,10 +202,10 @@ class AuctionController extends Controller
             'message' => 'required|string',
         ]);
         
-        $bidMessage->user_id = $user->id;
-        $bidMessage->bidinfo_id = $request->bidinfo_id;
-        $bidMessage->message = $request->message;
-        if($bidMessage->save()){
+        $bidmessage->user_id = $user->id;
+        $bidmessage->bidinfo_id = $request->bidinfo_id;
+        $bidmessage->message = $request->message;
+        if($bidmessage->save()){
             return back()->with('flash_success', 'メッセージを投稿しました');
         }
         
