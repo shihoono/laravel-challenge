@@ -20,7 +20,7 @@
                 <td>{{ $bidinformation->id }}</td>
                 <td>{{ $bidinformation->biditem->name }}</td>
                 <td>{{ $bidinformation->formatted_created_at }}</td>
-                <td></td>
+                <td>{!! link_to_route('auction.msgform', 'message', ['id' => $bidinformation->id]) !!}</td>
             </tr>
             @endforeach
         </tbody>

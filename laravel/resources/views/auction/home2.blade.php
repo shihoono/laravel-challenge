@@ -20,7 +20,11 @@
                     <td>{{ $biditem->id }}</td>
                     <td>{{ $biditem->name }}</td>
                     <td>{{ $biditem->formatted_endtime }}</td>
-                    <td></td>
+                    @if(isset($biditem->bidinfo))
+                        <td>{!! link_to_route('auction.msgform', 'message', ['id' => $biditem->bidinfo->id]) !!}</td>
+                    @elseif(!isset($biditem->bidinfo))
+                        <td></td>
+                    @endif
                 </tr>
                 @endforeach
             </tbody>
