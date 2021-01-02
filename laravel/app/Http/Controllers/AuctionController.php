@@ -78,7 +78,7 @@ class AuctionController extends Controller
         $user_id = $biditem->user_id;
         $user = User::findOrFail($user_id);
 
-        $bidrequests = Bidrequest::where('biditem_id', $id)->get();
+        $bidrequests = Bidrequest::where('biditem_id', $id)->orderBy('created_at', 'desc')->get();
         $newbidinfo = New Bidinfo;
 
         $current_time = new Carbon('now');
