@@ -162,7 +162,7 @@ class AuctionController extends Controller
         if($biditem->finished === 0){
         
             $request->validate([
-                'price' => 'required|integer|gte:1',
+                'price' => 'required|integer|gte:1|lte:1000000000',
             ]);
 
             $bidrequest->user_id = $user->id;
@@ -196,7 +196,7 @@ class AuctionController extends Controller
         $request->validate([
             'message' => 'required|string',
         ]);
-
+        
         $bidMessage->user_id = $user->id;
         $bidMessage->bidinfo_id = $request->bidinfo_id;
         $bidMessage->message = $request->message;
