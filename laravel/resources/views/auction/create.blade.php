@@ -10,13 +10,13 @@
 
                 <div class="form-group">
                     {!! Form::label('name', 'Name:') !!}
-                    {!! Form::text('name', null, ['class' => 'form-control']) !!}
+                    {!! Form::text('name', null, ['class' => 'form-control', 'style' => 'margin-bottom:10px']) !!}
 
                     {!! Form::label('description', 'Description:') !!}
-                    {!! Form::text('description', null, ['class' => 'form-control']) !!}
+                    {!! Form::textarea('description', null, ['class' => 'form-control', 'rows' => '3', 'style' => 'margin-bottom:10px']) !!}
 
                     {!! Form::label('endtime', 'Endtime:') !!}
-                    {!! Form::datetimeLocal('endtime', null, ['class' => 'form-control']) !!}
+                    {!! Form::datetimeLocal('endtime', null, ['class' => 'form-control', 'style' => 'margin-bottom:10px']) !!}
                 </div>
 
                 {!! Form::submit('投稿', ['class' => 'btn btn-primary']) !!}
