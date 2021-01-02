@@ -180,7 +180,7 @@ class AuctionController extends Controller
 
     public function msgForm($id)
     {
-        $bidmessage = New m;
+        $bidmessage = New Bidmessage;
         $bidinfo = Bidinfo::findOrFail($id);
 
         $messages = Bidmessage::where('bidinfo_id', $id)->orderBy('created_at', 'desc')->paginate(10);
