@@ -183,12 +183,15 @@ class AuctionController extends Controller
         $bidmessage = New Bidmessage;
         $bidinfo = Bidinfo::findOrFail($id);
 
+        $user = \Auth::user();
+
         $messages = Bidmessage::where('bidinfo_id', $id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('auction.msgform', [
             'bidmessage' => $bidmessage,
             'bidinfo' => $bidinfo,
             'messages' => $messages,
+            'user' => $user,
         ]);
     }
 
