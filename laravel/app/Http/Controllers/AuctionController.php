@@ -53,6 +53,8 @@ class AuctionController extends Controller
     {
         $biditem = New Biditem;
         $user = \Auth::user();
+        
+        $file = $request->file('picture_name');
 
         $biditem->user_id = $user->id;
         $biditem->name = $request->name;
@@ -67,6 +69,9 @@ class AuctionController extends Controller
             $picture_name = $biditem->id.'.'.$lower_case_conversion;
             $biditem->picture_name = $picture_name;
             $biditem->save();
+            
+            $target_path = public_path('/auction/');
+            $file->move($target_path, $biditem->picture_name);
 
             return redirect('/')->with('flash_success', ' 出品しました');
         }
