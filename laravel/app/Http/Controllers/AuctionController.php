@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\CreateBiditem;
 
 use App\Biditem;
 use App\User;
@@ -48,14 +49,8 @@ class AuctionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateBiditem $request)
     {
-        $request->validate([
-            'name' => 'required|max:100',
-            'description' => 'required|max:1000',
-            'endtime' => 'required|after:now',
-        ]);
-
         if($request->user()->biditems()->create([
             'name' => $request->name,
             'description' => $request->description,
