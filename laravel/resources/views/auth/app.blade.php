@@ -21,7 +21,7 @@
 
                 @if (session('flash_error'))
                     <div class="flash_error bg-danger text-center py-3 my-0">
-                        {{ session('flash_error) }}
+                        {{ session('flash_error') }}
                     </div>
                 @endif
 
