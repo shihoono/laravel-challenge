@@ -36,7 +36,7 @@
             </tbody>
         </table>
         {{ $messages->links() }}
-    @endif
+    @elseif($bidinfo->user_id !== $user->id || $bidinfo->biditem->user_id !== $user->user_id)
         <p>閲覧権限がありません</p>
-
+    @endif
 @endsection
