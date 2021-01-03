@@ -51,12 +51,23 @@ class AuctionController extends Controller
      */
     public function store(CreateBiditem $request)
     {
-        if($request->user()->biditems()->create([
-            'name' => $request->name,
-            'description' => $request->description,
-            'endtime' => $request->endtime,
-        ]))
+        $biditem = New Biditem;
+        $user = \Auth::user();
+
+        $biditem->user_id = $user->id;
+        $biditem->name = $request->name;
+        $biditem->description = $request->description;
+        $biditem->picture_name = $request->picture_name;
+        $biditem->endtime = $request->endtime;
+
+        if($biditem->save())
         {
+            $file_extension = $request->picture_name->getClientOriginalExtension();
+            $lower_case_conversion = strtolower($file_extension);
+            $picture_name = $biditem->id.'.'.$lower_case_conversion;
+            $biditem->picture_name = $picture_name;
+            $biditem->save();
+
             return redirect('/')->with('flash_success', ' 出品しました');
         }
         

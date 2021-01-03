@@ -7,7 +7,7 @@ use Carbon\Carbon;
 
 class Biditem extends Model
 {
-    protected $fillable = ['name', 'description', 'endtime'];
+    protected $fillable = ['name', 'description', 'picture_name', 'endtime'];
 
     public function user()
     {
