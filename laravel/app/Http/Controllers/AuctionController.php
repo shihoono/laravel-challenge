@@ -62,10 +62,10 @@ class AuctionController extends Controller
             'endtime' => $request->endtime,
         ]))
         {
-            return redirect('/')->with('flash_success', '保存しました');
+            return redirect('/')->with('flash_success', ' 出品しました');
         }
         
-        return redirect('/')->with('flash_error', '保存に失敗しました');
+        return redirect('/')->with('flash_error', 'もう一度やり直してください');
     }
 
     /**
@@ -82,10 +82,10 @@ class AuctionController extends Controller
         $user = User::findOrFail($user_id);
 
         $bidrequests = Bidrequest::where('biditem_id', $id)->orderBy('created_at', 'desc')->get();
-        $new_bidinfo = New Bidinfo;
 
         $current_time = new Carbon('now');
         if($current_time > $biditem->endtime && $biditem->finished === 0){
+            $new_bidinfo = New Bidinfo;
             $biditem->finished = 1;
             $biditem->save();
 
