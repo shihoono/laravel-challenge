@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    @if($bidinfo->user_id === $user->id || $bidinfo->biditem->user_id === $user->user_id)
+    @if($bidinfo->user_id === $user->id || $bidinfo->biditem->user_id === $user->id)
 
 
         <h2>{{ $bidinfo->biditem->name }}の情報</h2>
