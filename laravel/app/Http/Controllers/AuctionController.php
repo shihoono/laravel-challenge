@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\CreateBiditem;
+use App\Http\Requests\CreateBiditemRequest;
 
 use App\Biditem;
 use App\User;
@@ -49,7 +49,7 @@ class AuctionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateBiditem $request)
+    public function store(CreateBiditemRequest $request)
     {
         $biditem = New Biditem;
         $user = \Auth::user();
