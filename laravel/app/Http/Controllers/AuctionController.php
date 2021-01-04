@@ -69,9 +69,8 @@ class AuctionController extends Controller
             $picture_name = $biditem->id.'.'.$lower_case_conversion;
             $biditem->picture_name = $picture_name;
             $biditem->save();
-            
-            $target_path = public_path('/auction/');
-            $file->move($target_path, $biditem->picture_name);
+
+            $file->storeAs('auction', $biditem->picture_name, ['disk' => 'public']);
 
             return redirect('/')->with('flash_success', ' 出品しました');
         }

@@ -26,24 +26,9 @@ class CreateBiditem extends FormRequest
         return [
             'name' => 'required|max:100',
             'description' => 'required|max:1000',
-            'picture_name' => 'required|file',
+            'picture_name' => 'required|file|mimes:jpg,jpeg,png,gif',
             'endtime' => 'required|after:now',
         ];
     }
-
-    public function withValidator($validator)
-    {
-        $validator->after(function ($validator)
-        {
-            if($this->filled(['picture_name'])) {
-                $file_data = $this->file('picture_name');
-                $file_extension = $file_data->getClientOriginalExtension();
-                $lower_case_conversion = strtolower($file_extension);
-
-                if($lower_case_conversion !== 'jpg' && $lower_case_conversion !== 'jpeg' && $lower_case_conversion !== 'png' && $lower_case_conversion !== 'gif'){
-                    $validator->errors()->add('', '画像ファイルをアップロードしてください。');
-                }
-            }
-        });
-    }
+    
 }
