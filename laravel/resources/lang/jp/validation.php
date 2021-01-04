@@ -51,7 +51,7 @@ return [
         'array' => 'The :attribute must have more than :value items.',
     ],
     'gte' => [
-        'numeric' => 'The :attribute は　:value　以上でお願いします。',
+        'numeric' => ':attribute は　:value　以上でお願いします。',
         'file' => 'The :attribute must be greater than or equal :value kilobytes.',
         'string' => 'The :attribute must be greater than or equal :value characters.',
         'array' => 'The :attribute must have :value items or more.',
@@ -82,7 +82,7 @@ return [
         'string' => ':attribute は最大 :max 文字です。',
         'array' => 'The :attribute may not have more than :max items.',
     ],
-    'mimes' => 'The :attribute must be a file of type: :values.',
+    'mimes' => ':attribute は:valuesファイルをアップロードしてください',
     'mimetypes' => 'The :attribute must be a file of type: :values.',
     'min' => [
         'numeric' => ':attribute は :min 文字以上で入力してください。',
