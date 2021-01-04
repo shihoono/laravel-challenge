@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class CreateBiditem extends FormRequest
+class CreateBiditemRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,5 +30,5 @@ class CreateBiditem extends FormRequest
             'endtime' => 'required|after:now',
         ];
     }
-    
+
 }
