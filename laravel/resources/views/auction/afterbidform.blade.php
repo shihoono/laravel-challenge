@@ -39,6 +39,7 @@
     @endif
 
     @if($bidinfo->trading_status === 0 && !empty($bidinfo->bidder_name))
+        <h4>＊発送先情報</h4>
         <table class="table table-bordered" style="margin-bottom: 40px;">
             <tr>
                 <th>宛先氏名</th>
