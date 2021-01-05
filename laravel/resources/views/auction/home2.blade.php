@@ -13,6 +13,7 @@
                     <th>Endtime</th>
                     <th>Messages</th>
                     <th>Transaction</th>
+                    <th>Reviews</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,7 +25,9 @@
                     @if(isset($biditem->bidinfo))
                         <td>{!! link_to_route('auction.msgform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
                         <td>{!! link_to_route('auction.afterbidform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
+                        <td>{!! link_to_route('reviews.reviewform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
                     @elseif(!isset($biditem->bidinfo))
+                        <td></td>
                         <td></td>
                         <td></td>
                     @endif

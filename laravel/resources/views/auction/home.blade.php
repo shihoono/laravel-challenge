@@ -13,6 +13,7 @@
                 <th>Created</th>
                 <th>Messages</th>
                 <th>Transaction</th>
+                <th>Review</th>
             </tr>
         </thead>
         <tbody>
@@ -23,6 +24,7 @@
                 <td>{{ $bidinformation->formatted_created_at }}</td>
                 <td>{!! link_to_route('auction.msgform', 'view', ['id' => $bidinformation->id]) !!}</td>
                 <td>{!! link_to_route('auction.afterbidform', 'view', ['id' => $bidinformation->id]) !!}</td>
+                <td>{!! link_to_route('reviews.reviewform', 'view', ['id' => $bidinformation->id]) !!}</td>
             </tr>
             @endforeach
         </tbody>
