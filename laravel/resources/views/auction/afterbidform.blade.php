@@ -30,13 +30,14 @@
                 {!! Form::close() !!}
             </div>
         </div>
-    @elseif($bidinfo->user_id === $user->id && !empty($bidinfo->bidder_name))
+    @elseif($bidinfo->user_id === $user->id && !empty($bidinfo->bidder_name) && $bidinfo->trading_status === 0)
         <p>出品者の商品発送をお待ち下さい</p>
     @elseif($biditem->user_id === $user->id)
         @if($bidinfo->trading_status === 0 && empty($bidinfo->bidder_name))
             <p>落札者の発送先連絡をお待ち下さい</p>
         @endif
     @endif
+
     @if($bidinfo->trading_status === 0 && !empty($bidinfo->bidder_name))
         <table class="table table-bordered" style="margin-bottom: 40px;">
             <tr>
@@ -59,7 +60,22 @@
             {!! Form::close() !!}
         @endif
     @endif
+
     @if($bidinfo->trading_status === 1 && $biditem->user_id === $user->id)
+        <p>発送連絡が完了しました</p>
         <p>落札者からの受取連絡をお待ち下さい</p>
+    @elseif($bidinfo->trading_status === 1 && $bidinfo->user_id === $user->id)
+        {!! Form::model($bidinfo, ['route' => 'auction.afterbid']) !!}
+            {{ Form::hidden('id', $bidinfo->id) }}
+            {!! Form::submit('受取完了', ['class' => 'btn btn-primary btn-lg', 'name' => 'received']) !!}
+        {!! Form::close() !!}
+    @endif
+
+    @if($bidinfo->trading_status === 2 && $biditem->user_id === $user->id)
+        <p>落札者の受取が完了しました</p>
+        <p>取引完了</p>
+    @elseif($bidinfo->trading_status === 2 && $bidinfo->user_id === $user->id)
+        <p>受取連絡が完了しました</p>
+        <p>取引完了</p>
     @endif
 @endsection

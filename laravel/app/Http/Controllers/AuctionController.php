@@ -276,6 +276,18 @@ class AuctionController extends Controller
                 if($bidinfo->save()){
                     return back()->with('flash_success', '発送連絡が完了しました');
                 }
+                return back()->with('flash_error', 'もう一度やり直してください');
+            }
+        }
+
+        if($bidinfo->trading_status === 1 && !is_null($bidinfo->bidder_name))
+        {
+            if(isset($_POST['received'])){
+                $bidinfo->trading_status = 2;
+                if($bidinfo->save()){
+                    return back()->with('flash_success', '受取連絡が完了しました');
+                }
+                return back()->with('flash_error', 'もう一度やり直してください');
             }
         }
     }
