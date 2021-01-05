@@ -32,4 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::post('msg', 'AuctionController@msg')->name('auction.msg');
     Route::get('{id}/afterbid', 'AuctionController@afterBidForm')->name('auction.afterbidform');
     Route::post('afterbid', 'AuctionController@afterbid')->name('auction.afterbid');
+
+    Route::get('{id}/review', 'ReviewsController@reviewForm')->name('reviews.reviewform');
+    Route::post('review', 'ReviewsController@review')->name('reviews.review');
 });
