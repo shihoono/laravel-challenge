@@ -4,9 +4,9 @@
 
     <h2>{{ $bidinfo->biditem->name }}の取引</h2>
 
-    <h4>＊発送先情報</h4>
-    <p>発送先を入力してください</p>
-    @if($bidinfo->user_id === $user->id)
+    @if($bidinfo->user_id === $user->id && empty($bidinfo->bidder_name))
+        <h4>＊発送先情報</h4>
+        <p>発送先を入力してください</p>
 
         <div class="row">
             <div class="col-6">
@@ -25,13 +25,41 @@
                     </div>
 
                         {{ Form::hidden('id', $bidinfo->id) }}
-                        {!! Form::submit('送信', ['class' => 'btn btn-primary']) !!}
+                        {!! Form::submit('送信', ['class' => 'btn btn-primary', 'name' => 'bidder_info']) !!}
 
                 {!! Form::close() !!}
             </div>
         </div>
+    @elseif($bidinfo->user_id === $user->id && !empty($bidinfo->bidder_name))
+        <p>出品者の商品発送をお待ち下さい</p>
     @elseif($biditem->user_id === $user->id)
-        <p>落札者の発送先連絡をお待ち下さい</p>
+        @if($bidinfo->trading_status === 0 && empty($bidinfo->bidder_name))
+            <p>落札者の発送先連絡をお待ち下さい</p>
+        @endif
     @endif
-
+    @if($bidinfo->trading_status === 0 && !empty($bidinfo->bidder_name))
+        <table class="table table-bordered" style="margin-bottom: 40px;">
+            <tr>
+                <th>宛先氏名</th>
+                <td>{{ $bidinfo->bidder_name }}</td>
+            </tr>
+            <tr>
+                <th>商品名</th>
+                <td>{{ $bidinfo->bidder_address }}</td>
+            </tr>
+            <tr>
+                <th>商品説明</th>
+                <td>{{ $bidinfo->bidder_phone_number}}</td>
+            </tr>
+        </table>
+        @if($biditem->user_id === $user->id)
+            {!! Form::model($bidinfo, ['route' => 'auction.afterbid']) !!}
+                {{ Form::hidden('id', $bidinfo->id) }}
+                {!! Form::submit('発送完了', ['class' => 'btn btn-primary btn-lg', 'name' => 'sent']) !!}
+            {!! Form::close() !!}
+        @endif
+    @endif
+    @if($bidinfo->trading_status === 1 && $biditem->user_id === $user->id)
+        <p>落札者からの受取連絡をお待ち下さい</p>
+    @endif
 @endsection

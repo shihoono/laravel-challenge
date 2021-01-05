@@ -244,14 +244,20 @@ class AuctionController extends Controller
         ]);
     }
 
-    public function afterbid(AfterBidRequest $request)
+    public function afterbid(Request $request)
     {
         $bidinfo = Bidinfo::findOrFail($request->id);
         $user = \Auth::user();
 
         if($bidinfo->trading_status === 0 && is_null($bidinfo->bidder_name)){
-            if(!empty($request)){
+            if(isset($_POST['bidder_info'])){
                 if($bidinfo->user_id === $user->id){
+                    $request->validate([
+                        'bidder_name' => 'required|string|max:100',
+                        'bidder_address' => 'required|string|max:255',
+                        'bidder_phone_number' => 'required|string|max:13',
+                    ]);
+
                     $bidinfo->bidder_name = $request->bidder_name;
                     $bidinfo->bidder_address = $request->bidder_address;
                     $bidinfo->bidder_phone_number = $request->bidder_phone_number;
@@ -262,7 +268,16 @@ class AuctionController extends Controller
                 return back()->with('flash_error', 'もう一度やり直してください');
             }
         }
-        
+
+        if($bidinfo->trading_status === 0 && !is_null($bidinfo->bidder_name))
+        {
+            if(isset($_POST['sent'])){
+                $bidinfo->trading_status = 1;
+                if($bidinfo->save()){
+                    return back()->with('flash_success', '発送連絡が完了しました');
+                }
+            }
+        }
     }
 
     public function home()
