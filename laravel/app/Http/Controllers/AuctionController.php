@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateBiditemRequest;
+use App\Http\Requests\AfterBidRequest;
 
 use App\Biditem;
 use App\User;
@@ -228,6 +229,40 @@ class AuctionController extends Controller
             }
         }
         return back()->with('flash_error', '権限がないか、もしくはもう一度やり直してください');
+    }
+
+    public function afterBidForm($id)
+    {
+        $bidinfo = Bidinfo::findOrFail($id);
+        $biditem = Biditem::findOrFail($bidinfo->biditem_id);
+        $user = \Auth::user();
+
+        return view('auction.afterbidform', [
+            'bidinfo' => $bidinfo,
+            'biditem' => $biditem,
+            'user' => $user,
+        ]);
+    }
+
+    public function afterbid(AfterBidRequest $request)
+    {
+        $bidinfo = Bidinfo::findOrFail($request->id);
+        $user = \Auth::user();
+
+        if($bidinfo->trading_status === 0 && is_null($bidinfo->bidder_name)){
+            if(!empty($request)){
+                if($bidinfo->user_id === $user->id){
+                    $bidinfo->bidder_name = $request->bidder_name;
+                    $bidinfo->bidder_address = $request->bidder_address;
+                    $bidinfo->bidder_phone_number = $request->bidder_phone_number;
+                    if($bidinfo->save()){
+                        return back()->with('flash_success', '発送先情報を送信しました');
+                    }
+                }
+                return back()->with('flash_error', 'もう一度やり直してください');
+            }
+        }
+        
     }
 
     public function home()
