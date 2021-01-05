@@ -247,6 +247,7 @@ class AuctionController extends Controller
     public function afterbid(Request $request)
     {
         $bidinfo = Bidinfo::findOrFail($request->id);
+        $biditem = Biditem::findOrFail($bidinfo->biditem_id);
         $user = \Auth::user();
 
         if($bidinfo->trading_status === 0 && is_null($bidinfo->bidder_name)){
@@ -272,9 +273,11 @@ class AuctionController extends Controller
         if($bidinfo->trading_status === 0 && !is_null($bidinfo->bidder_name))
         {
             if(isset($_POST['sent'])){
-                $bidinfo->trading_status = 1;
-                if($bidinfo->save()){
-                    return back()->with('flash_success', '発送連絡が完了しました');
+                if($biditem->user_id === $user->id){
+                    $bidinfo->trading_status = 1;
+                    if($bidinfo->save()){
+                        return back()->with('flash_success', '発送連絡が完了しました');
+                    }
                 }
                 return back()->with('flash_error', 'もう一度やり直してください');
             }
@@ -283,9 +286,11 @@ class AuctionController extends Controller
         if($bidinfo->trading_status === 1 && !is_null($bidinfo->bidder_name))
         {
             if(isset($_POST['received'])){
-                $bidinfo->trading_status = 2;
-                if($bidinfo->save()){
-                    return back()->with('flash_success', '受取連絡が完了しました');
+                if($bidinfo->user_id === $user->id){
+                    $bidinfo->trading_status = 2;
+                    if($bidinfo->save()){
+                        return back()->with('flash_success', '受取連絡が完了しました');
+                    }
                 }
                 return back()->with('flash_error', 'もう一度やり直してください');
             }
