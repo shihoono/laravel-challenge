@@ -11,7 +11,8 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Created</th>
-                <th>Actions</th>
+                <th>Messages</th>
+                <th>Transaction</th>
             </tr>
         </thead>
         <tbody>
@@ -20,7 +21,8 @@
                 <td>{{ $bidinformation->id }}</td>
                 <td>{{ $bidinformation->biditem->name }}</td>
                 <td>{{ $bidinformation->formatted_created_at }}</td>
-                <td>{!! link_to_route('auction.msgform', 'message', ['id' => $bidinformation->id]) !!}</td>
+                <td>{!! link_to_route('auction.msgform', 'view', ['id' => $bidinformation->id]) !!}</td>
+                <td>{!! link_to_route('auction.afterbidform', 'view', ['id' => $bidinformation->id]) !!}</td>
             </tr>
             @endforeach
         </tbody>

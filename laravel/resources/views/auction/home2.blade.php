@@ -11,7 +11,8 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Endtime</th>
-                    <th>Actions</th>
+                    <th>Messages</th>
+                    <th>Transaction</th>
                 </tr>
             </thead>
             <tbody>
@@ -21,8 +22,10 @@
                     <td>{{ $biditem->name }}</td>
                     <td>{{ $biditem->formatted_endtime }}</td>
                     @if(isset($biditem->bidinfo))
-                        <td>{!! link_to_route('auction.msgform', 'message', ['id' => $biditem->bidinfo->id]) !!}</td>
+                        <td>{!! link_to_route('auction.msgform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
+                        <td>{!! link_to_route('auction.afterbidform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
                     @elseif(!isset($biditem->bidinfo))
+                        <td></td>
                         <td></td>
                     @endif
                 </tr>
