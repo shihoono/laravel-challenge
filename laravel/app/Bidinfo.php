@@ -30,4 +30,9 @@ class Bidinfo extends Model
     {
         return $this->hasMany(Bidmessage::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

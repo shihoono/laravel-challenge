@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Bidmessage::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Bidmessage::class);
+    }
 }
