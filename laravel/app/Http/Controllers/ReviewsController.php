@@ -18,10 +18,16 @@ class ReviewsController extends Controller
         $bidinfo = Bidinfo::findOrFail($id);
         $user = \Auth::user();
 
+        $reviewed = Review::where([
+            ['bidinfo_id', $id],
+            ['reviewer_id', $user->id]
+        ])->count();
+
         return view('reviews.reviewform', [
             'review' => $review,
             'bidinfo' => $bidinfo,
             'user' => $user,
+            'reviewed' => $reviewed,
         ]);
     }
 
