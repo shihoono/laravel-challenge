@@ -8,6 +8,7 @@ use App\Bidinfo;
 use App\Review;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ReviewRequest;
 
 class ReviewsController extends Controller
 {
@@ -24,7 +25,7 @@ class ReviewsController extends Controller
         ]);
     }
 
-    public function review(Request $request)
+    public function review(ReviewRequest $request)
     {
         $review = New Review;
         $user = \Auth::user();
