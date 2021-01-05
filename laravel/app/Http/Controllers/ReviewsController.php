@@ -15,10 +15,12 @@ class ReviewsController extends Controller
     {
         $review = New Review;
         $bidinfo = Bidinfo::findOrFail($id);
+        $user = \Auth::user();
 
         return view('reviews.reviewform', [
             'review' => $review,
-            'bidinfo' => $bidinfo
+            'bidinfo' => $bidinfo,
+            'user' => $user,
         ]);
     }
 
@@ -35,6 +37,7 @@ class ReviewsController extends Controller
             ['reviewer_id', $user->id]
         ])->count();
 
+        
         if($bidinfo->trading_status === 2){
             if($reviewed === 0){
                 $review->bidinfo_id = $request->id;
@@ -52,6 +55,7 @@ class ReviewsController extends Controller
                 if($review->save()){
                     return redirect('/')->with('flash_success', '評価しました');
                 }
+                return back()->with('flash_error', 'もう一度やり直してください');
             } else {
                 return back()->with('flash_error', '評価済みです');
             }
