@@ -6,7 +6,7 @@
     <table class="table table-bordered" style="margin-bottom: 40px;">
         <tr>
             <th>出品者</th>
-            <td>{{ $user->name }}</td>
+            <td>{!! link_to_route('reviews.show', $user->name , ['id' => $user->id]) !!}</td>
         </tr>
         <tr>
             <th>商品名</th>
@@ -55,7 +55,7 @@
             <tbody>
                 @foreach ($bidinfo as $bidinfo)
                     <tr>
-                        <td>{{ $bidinfo->user->name }}</td>
+                        <td>{!! link_to_route('reviews.show', $bidinfo->user->name , ['id' => $bidinfo->user->id]) !!}</td>
                         <td>{{ $bidinfo->price }}円</td>
                         <td>{{ $bidinfo->formatted_created_at }}</td>
                     </tr>
