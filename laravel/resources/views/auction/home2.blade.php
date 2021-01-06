@@ -25,7 +25,7 @@
                     @if(isset($biditem->bidinfo))
                         <td>{!! link_to_route('auction.showmsgform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
                         <td>{!! link_to_route('auction.showafterbidform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
-                        <td>{!! link_to_route('reviews.reviewform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
+                        <td>{!! link_to_route('reviews.showreviewform', 'view', ['id' => $biditem->bidinfo->id]) !!}</td>
                     @elseif(!isset($biditem->bidinfo))
                         <td></td>
                         <td></td>

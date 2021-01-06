@@ -12,7 +12,7 @@ use App\Http\Requests\ReviewRequest;
 
 class ReviewsController extends Controller
 {
-    public function reviewForm($id)
+    public function showReviewForm($id)
     {
         $review = New Review;
         $bidinfo = Bidinfo::findOrFail($id);
@@ -23,7 +23,7 @@ class ReviewsController extends Controller
             ['reviewer_id', $user->id]
         ])->count();
 
-        return view('reviews.reviewform', [
+        return view('reviews.showreviewform', [
             'review' => $review,
             'bidinfo' => $bidinfo,
             'user' => $user,
