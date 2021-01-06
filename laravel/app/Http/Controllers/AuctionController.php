@@ -212,7 +212,7 @@ class AuctionController extends Controller
         $user = \Auth::user();
         
         $request->validate([
-            'message' => 'required|string',
+            'message' => 'required|string|max:1000',
         ]);
         
         $bidinfo = Bidinfo::findOrFail($request->bidinfo_id);

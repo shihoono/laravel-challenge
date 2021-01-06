@@ -24,9 +24,9 @@ class CreateBiditemRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
-            'description' => 'required|max:1000',
-            'picture_name' => 'required|file|mimes:jpg,jpeg,png,gif',
+            'name' => 'required|string|max:100',
+            'description' => 'required|string|max:1000',
+            'picture_name' => 'required|string|file|mimes:jpg,jpeg,png,gif',
             'endtime' => 'required|after:now',
         ];
     }
