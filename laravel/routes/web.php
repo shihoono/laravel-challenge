@@ -35,4 +35,5 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::get('{id}/review', 'ReviewsController@reviewForm')->name('reviews.reviewform');
     Route::post('review', 'ReviewsController@review')->name('reviews.review');
+    Route::get('{id}/show', 'ReviewsController@show')->name('reviews.show');
 });
