@@ -18,7 +18,7 @@
         </tr>
         <tr>
             <th>商品写真</th>
-            <td><img src="/storage/auction/{{ $biditem->picture_name }}" style="width: 180px;"></td>
+            <td><img src="/storage/auction/{{ $biditem->picture_name }}" style="height: 180px;"></td>
         </tr>
         <tr>
             <th>商品ID</th>
