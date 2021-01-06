@@ -68,7 +68,7 @@
 
     <h4>入札情報</h4>
     @if($biditem->finished === 0)
-        {!! link_to_route('auction.bidform', '<入札する>', ['id' => $biditem->id]) !!}
+        {!! link_to_route('auction.showbidform', '<入札する>', ['id' => $biditem->id]) !!}
     @endif
 
     @if($bidrequests->isNotEmpty())

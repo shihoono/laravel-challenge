@@ -120,12 +120,12 @@ class AuctionController extends Controller
         ]);
     }
 
-    public function bidForm($id)
+    public function showBidForm($id)
     {
         $bidrequest = New Bidrequest;
         $biditem = Biditem::findOrFail($id);
 
-        return view('auction.bidform', [
+        return view('auction.showbidform', [
             'bidrequest' => $bidrequest,
             'biditem' => $biditem,
         ]);
