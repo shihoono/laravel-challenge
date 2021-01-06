@@ -64,10 +64,10 @@ class AuctionController extends Controller
 
         if($biditem->save())
         {
-            $file_extension = $request->picture_name->getClientOriginalExtension();
-            $lower_case_conversion = strtolower($file_extension);
-            $picture_name = $biditem->id.'.'.$lower_case_conversion;
-            $biditem->picture_name = $picture_name;
+            $fileExtension = $request->picture_name->getClientOriginalExtension();
+            $lowerCaseConversion = strtolower($fileExtension);
+            $pictureName = $biditem->id.'.'.$lowerCaseConversion;
+            $biditem->picture_name = $pictureName;
             $biditem->save();
 
             $file->storeAs('auction', $biditem->picture_name, ['disk' => 'public']);
@@ -88,25 +88,25 @@ class AuctionController extends Controller
     {
         $biditem = Biditem::findOrFail($id);
 
-        $user_id = $biditem->user_id;
-        $user = User::findOrFail($user_id);
+        $userId = $biditem->user_id;
+        $user = User::findOrFail($userId);
 
         $bidrequests = Bidrequest::where('biditem_id', $id)->orderBy('created_at', 'desc')->get();
 
-        $current_time = new Carbon('now');
-        if($current_time > $biditem->endtime && $biditem->finished === 0){
-            $new_bidinfo = New Bidinfo;
+        $currentTime = new Carbon('now');
+        if($currentTime > $biditem->endtime && $biditem->finished === 0){
+            $newBidinfo = New Bidinfo;
             $biditem->finished = 1;
             $biditem->save();
 
-            $new_bidinfo->biditem_id = $id;
+            $newBidinfo->biditem_id = $id;
 
-            $top_bidrequest = Bidrequest::where('biditem_id', $id)->orderBy('price', 'desc')->first();
+            $topBidrequest = Bidrequest::where('biditem_id', $id)->orderBy('price', 'desc')->first();
 
-            if(!empty($top_bidrequest)){
-                $new_bidinfo->user_id = $top_bidrequest->user_id;
-                $new_bidinfo->price = $top_bidrequest->price;
-                $new_bidinfo->save();
+            if(!empty($topBidrequest)){
+                $newBidinfo->user_id = $topBidrequest->user_id;
+                $newBidinfo->price = $topBidrequest->price;
+                $newBidinfo->save();
             }
         }
 

@@ -6,7 +6,7 @@
     <table class="table table-bordered col-sm-4" style="margin-bottom: 40px;">
         <tr>
             <th>評価平均</th>
-            <td>{{ round($rate_avg, 1) }}</td>
+            <td>{{ round($rateAvg, 1) }}</td>
         </tr>
     </table>
 

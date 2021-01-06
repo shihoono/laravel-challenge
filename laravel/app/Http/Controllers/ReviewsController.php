@@ -77,20 +77,20 @@ class ReviewsController extends Controller
 
         $reviews = Review::where('reviewee_id', $id)->orderBy('created_at', 'desc')->get();
 
-        $rate_avg = $this->getAvg($id);
+        $rateAvg = $this->getAvg($id);
 
         return view('reviews.show', [
             'user' => $user,
             'reviews' => $reviews,
-            'rate_avg' => $rate_avg,
+            'rateAvg' => $rateAvg,
         ]);
     }
 
     public function getAvg($id)
     {
         $rate = Review::where('reviewee_id', $id)->select('rate')->get();
-        $rate_avg = collect($rate)->avg('rate');
+        $rateAvg = collect($rate)->avg('rate');
 
-        return $rate_avg;
+        return $rateAvg;
     }
 }
