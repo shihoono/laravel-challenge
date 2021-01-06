@@ -139,17 +139,20 @@ class AuctionController extends Controller
 
         $biditem = Biditem::where('id', $request->biditem_id)->first();
         if($biditem->finished === 0){
+            if($biditem->user_id !== $user->id){
         
-            $request->validate([
-                'price' => 'required|integer|gte:1|lte:1000000000',
-            ]);
+                $request->validate([
+                    'price' => 'required|integer|gte:1|lte:1000000000',
+                ]);
 
-            $bidrequest->user_id = $user->id;
-            $bidrequest->biditem_id = $request->biditem_id;
-            $bidrequest->price = $request->price;
-            if($bidrequest->save()){
-                return back()->with('flash_success', '入札しました'); 
+                $bidrequest->user_id = $user->id;
+                $bidrequest->biditem_id = $request->biditem_id;
+                $bidrequest->price = $request->price;
+                if($bidrequest->save()){
+                    return back()->with('flash_success', '入札しました'); 
+                }
             }
+            return back()->with('flash_error', 'ご自身の商品には入札できません。');
         }
         return back()->with('flash_error', 'もう一度やり直してください');
     }
