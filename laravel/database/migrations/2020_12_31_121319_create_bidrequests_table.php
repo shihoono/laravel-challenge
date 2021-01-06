@@ -17,7 +17,7 @@ class CreateBidrequestsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('biditem_id');
             $table->unsignedBigInteger('user_id');
-            $table->integer('price');
+            $table->integer('price')->length(10);
             $table->timestamps();
 
             $table->foreign('biditem_id')->references('id')->on('biditems');
