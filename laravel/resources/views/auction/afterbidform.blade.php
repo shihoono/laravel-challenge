@@ -73,12 +73,12 @@
     @endif
 
     @if($bidinfo->trading_status === 2 && $biditem->user_id === $user->id)
-        <p>落札者の受取が完了しました。</p>
-        <p>取引完了しました。下記リンクから評価を行ってください。</p>
+        <p>落札者の受取が完了しました</p>
+        <p>取引が完了しました。下記リンクから評価を行ってください。</p>
         {!! link_to_route('reviews.reviewform', '評価する', ['id' => $bidinfo->id]) !!}
     @elseif($bidinfo->trading_status === 2 && $bidinfo->user_id === $user->id)
-        <p>取引完了しました。下記リンクから評価を行ってください。</p>
-        <p>取引完了</p>
+        <p>受取連絡が完了しました</p>
+        <p>取引が完了しました。下記リンクから評価を行ってください。</p>
         {!! link_to_route('reviews.reviewform', '評価する', ['id' => $bidinfo->id]) !!}
     @endif
 @endsection
