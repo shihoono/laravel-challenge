@@ -70,4 +70,27 @@ class ReviewsController extends Controller
             return back()->with('flash_error', 'まだ取引が完了していません');
         }
     }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+
+        $reviews = Review::where('reviewee_id', $id)->orderBy('created_at', 'desc')->get();
+
+        $rate_avg = $this->getAvg($id);
+
+        return view('reviews.show', [
+            'user' => $user,
+            'reviews' => $reviews,
+            'rate_avg' => $rate_avg,
+        ]);
+    }
+
+    public function getAvg($id)
+    {
+        $rate = Review::where('reviewee_id', $id)->select('rate')->get();
+        $rate_avg = collect($rate)->avg('rate');
+
+        return $rate_avg;
+    }
 }
