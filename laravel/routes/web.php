@@ -28,7 +28,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::get('home', 'AuctionController@home')->name('auction.home');
     Route::get('{id}/showbidform', 'AuctionController@showBidForm')->name('auction.showbidform');
     Route::post('bid', 'AuctionController@bid')->name('auction.bid');
-    Route::get('{id}/msg', 'AuctionController@msgForm')->name('auction.msgform');
+    Route::get('{id}/msg', 'AuctionController@showMsgForm')->name('auction.showmsgform');
     Route::post('msg', 'AuctionController@msg')->name('auction.msg');
     Route::get('{id}/afterbid', 'AuctionController@afterBidForm')->name('auction.afterbidform');
     Route::post('afterbid', 'AuctionController@afterbid')->name('auction.afterbid');

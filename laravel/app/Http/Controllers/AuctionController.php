@@ -154,7 +154,7 @@ class AuctionController extends Controller
         return back()->with('flash_error', 'もう一度やり直してください');
     }
 
-    public function msgForm($id)
+    public function showMsgForm($id)
     {
         $bidmessage = New Bidmessage;
         $bidinfo = Bidinfo::findOrFail($id);
@@ -163,7 +163,7 @@ class AuctionController extends Controller
 
         $messages = Bidmessage::where('bidinfo_id', $id)->orderBy('created_at', 'desc')->paginate(10);
 
-        return view('auction.msgform', [
+        return view('auction.showmsgform', [
             'bidmessage' => $bidmessage,
             'bidinfo' => $bidinfo,
             'messages' => $messages,
