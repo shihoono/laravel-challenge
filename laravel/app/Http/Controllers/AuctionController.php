@@ -196,13 +196,13 @@ class AuctionController extends Controller
         return back()->with('flash_error', '権限がないか、もしくはもう一度やり直してください');
     }
 
-    public function afterBidForm($id)
+    public function showAfterBidForm($id)
     {
         $bidinfo = Bidinfo::findOrFail($id);
         $biditem = Biditem::findOrFail($bidinfo->biditem_id);
         $user = \Auth::user();
 
-        return view('auction.afterbidform', [
+        return view('auction.showafterbidform', [
             'bidinfo' => $bidinfo,
             'biditem' => $biditem,
             'user' => $user,

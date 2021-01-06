@@ -23,7 +23,7 @@
                 <td>{{ $bidinformation->biditem->name }}</td>
                 <td>{{ $bidinformation->formatted_created_at }}</td>
                 <td>{!! link_to_route('auction.showmsgform', 'view', ['id' => $bidinformation->id]) !!}</td>
-                <td>{!! link_to_route('auction.afterbidform', 'view', ['id' => $bidinformation->id]) !!}</td>
+                <td>{!! link_to_route('auction.showafterbidform', 'view', ['id' => $bidinformation->id]) !!}</td>
                 <td>{!! link_to_route('reviews.reviewform', 'view', ['id' => $bidinformation->id]) !!}</td>
             </tr>
             @endforeach
