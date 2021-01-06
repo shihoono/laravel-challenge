@@ -299,7 +299,7 @@ class AuctionController extends Controller
     public function home()
     {
         $user = \Auth::user();
-        $bidinfo = Bidinfo::where('user_id', $user->id)->paginate();
+        $bidinfo = Bidinfo::where('user_id', $user->id)->orderBy('created_at', 'desc')->paginate();
 
         return view('auction.home',[
             'bidinfo' => $bidinfo,
@@ -310,7 +310,7 @@ class AuctionController extends Controller
     public function home2()
     {
         $user = \Auth::user();
-        $biditems = Biditem::where('user_id', $user->id)->with('bidinfo')->paginate();
+        $biditems = Biditem::where('user_id', $user->id)->with('bidinfo')->orderBy('created_at', 'desc')->paginate();
 
         return view('auction.home2',[
             'biditems' => $biditems,
