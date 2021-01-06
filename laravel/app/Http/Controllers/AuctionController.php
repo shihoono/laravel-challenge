@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\CreateBiditemRequest;
-use App\Http\Requests\AfterBidRequest;
 
 use App\Biditem;
 use App\User;
