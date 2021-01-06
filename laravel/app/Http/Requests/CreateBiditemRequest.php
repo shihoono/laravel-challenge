@@ -26,7 +26,7 @@ class CreateBiditemRequest extends FormRequest
         return [
             'name' => 'required|string|max:100',
             'description' => 'required|string|max:1000',
-            'picture_name' => 'required|string|file|mimes:jpg,jpeg,png,gif',
+            'picture_name' => 'required|file|mimes:jpg,jpeg,png,gif',
             'endtime' => 'required|after:now',
         ];
     }
