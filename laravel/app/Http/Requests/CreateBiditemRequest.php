@@ -31,4 +31,19 @@ class CreateBiditemRequest extends FormRequest
         ];
     }
 
+    public function withValidator($validator)	
+    {	
+        $validator->after(function ($validator)	
+        {	
+            $fileData = $this->file('picture_name');	
+            $fileExtension = $fileData->getClientOriginalExtension();	
+            $lowerCaseConversion = strtolower($fileExtension);	
+
+            if($lowerCaseConversion !== 'jpg' && $lowerCaseConversion !== 'jpeg' && $lowerCaseConversion !== 'png' && $lowerCaseConversion !== 'gif'){	
+                $validator->errors()->add('', '画像ファイルをアップロードしてください。');	
+            }	
+            
+        });	
+    }
+
 }
