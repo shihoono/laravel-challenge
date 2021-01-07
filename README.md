@@ -1,6 +1,6 @@
 # docker-laravel
 
-- Laravel Welcomeページ
+- オークショントップページ（ログインページ）
 http://127.0.0.1:10080
 
 - PhpMyAdmin トップページ
@@ -8,7 +8,7 @@ http://127.0.0.1:8080
 
  ### セットアップ手順
 
-1. このリポジトリの master ブランチをチェックアウトする
+1. このリポジトリの feature/auction-base ブランチをチェックアウトする
 
 2. docker-compose.yml があるディレクトリで下記のコマンドを実行する
 ```
@@ -38,4 +38,9 @@ $ docker-compose exec app bash
 7. マイグレーション実行
 ```
 [app] $ php artisan migrate
+```
+
+8. 画像ファイルの表示のため、シンボリックリンクをはる
+```
+[app] $ php artisan storage:link
 ```
