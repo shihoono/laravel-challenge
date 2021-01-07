@@ -1,6 +1,6 @@
 # docker-laravel
 
-- Laravel Welcomeページ
+- オークションサイト　トップページ（ログインページ）
 http://127.0.0.1:10080
 
 - PhpMyAdmin トップページ
@@ -38,4 +38,9 @@ $ docker-compose exec app bash
 7. マイグレーション実行
 ```
 [app] $ php artisan migrate
+```
+
+8. 画像ファイルの表示のため、シンボリックリンクをはる
+```
+[app] $ php artisan storage:link
 ```
