@@ -60,14 +60,18 @@ class ReviewsController extends Controller
                 $review->rate = $request->rate;
                 $review->comment = $request->comment;
                 if($review->save()){
-                    return redirect('/')->with('flash_success', '評価しました');
+                    session()->flash('flash_message', '評価しました');
+                    return redirect('/');
                 }
-                return back()->with('flash_error', 'もう一度やり直してください');
+                session()->flash('flash_message', 'もう一度やり直してください');
+                return back();
             } else {
-                return back()->with('flash_error', '評価済みです');
+                session()->flash('flash_message', '評価済みです');
+                return back();
             }
         } else {
-            return back()->with('flash_error', 'まだ取引が完了していません');
+            session()->flash('flash_message', 'まだ取引が完了していません');
+            return back();
         }
     }
 

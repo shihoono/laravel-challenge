@@ -43,10 +43,12 @@ class AdminController extends Controller
         $user->role = $request->role;
         $user->password = Hash::make($request->password);
         if($user->save()){
-            return redirect('admin')->with('flash_success', '更新しました');
+            session()->flash('flash_message', '更新しました');
+            return redirect('admin');
         }
 
-        return redirect('admin')->with('flash_error', 'もう一度やり直してください');
+        session()->flash('flash_message', 'もう一度やり直してください');
+        return redirect('admin');
     }
 
     protected function validator(array $data)
@@ -63,9 +65,11 @@ class AdminController extends Controller
     {
         $user = User::findOrFail($id);
         if($user->delete()){
-            return redirect('admin')->with('flash_success', '削除しました');
+            session()->flash('flash_message', '削除しました');
+            return redirect('admin');
         }
 
-        return redirect('admin')->with('flash_error', 'このユーザーは削除できません');
+        session()->flash('flash_message', 'このユーザーは削除できません');
+        return redirect('admin');
     }
 }

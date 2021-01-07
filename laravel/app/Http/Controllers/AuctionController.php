@@ -72,10 +72,12 @@ class AuctionController extends Controller
 
             $file->storeAs('auction', $biditem->picture_name, ['disk' => 'public']);
 
-            return redirect('/')->with('flash_success', ' 出品しました');
+            session()->flash('flash_message', ' 出品しました');
+            return redirect('/');
         }
         
-        return redirect('/')->with('flash_error', 'もう一度やり直してください');
+        session()->flash('flash_message', 'もう一度やり直してください');
+        return redirect('/');
     }
 
     /**
@@ -149,12 +151,14 @@ class AuctionController extends Controller
                 $bidrequest->biditem_id = $request->biditem_id;
                 $bidrequest->price = $request->price;
                 if($bidrequest->save()){
-                    return back()->with('flash_success', '入札しました'); 
+                    session()->flash('flash_message', '入札しました'); 
+                    return back();
                 }
             }
-            return back()->with('flash_error', 'ご自身の商品には入札できません。');
+            session()->flash('flash_message', 'ご自身の商品には入札できません。');
+            return back();
         }
-        return back()->with('flash_error', 'もう一度やり直してください');
+        return back()->with('flash_message', 'もう一度やり直してください');
     }
 
     public function showMsgForm($id)
@@ -193,10 +197,12 @@ class AuctionController extends Controller
             $bidmessage->message = $request->message;
         
             if($bidmessage->save()){
-                return back()->with('flash_success', 'メッセージを投稿しました');
+                session()->flash('flash_message', 'メッセージを投稿しました');
+                return back();
             }
         }
-        return back()->with('flash_error', '権限がないか、もしくはもう一度やり直してください');
+        session()->flash('flash_message', '権限がないか、もしくはもう一度やり直してください');
+        return back();
     }
 
     public function showAfterBidForm($id)
@@ -231,10 +237,12 @@ class AuctionController extends Controller
                     $bidinfo->bidder_address = $request->bidder_address;
                     $bidinfo->bidder_phone_number = $request->bidder_phone_number;
                     if($bidinfo->save()){
-                        return back()->with('flash_success', '発送先情報を送信しました');
+                        session()->flash('flash_message', '発送先情報を送信しました');
+                        return back();
                     }
                 }
-                return back()->with('flash_error', 'もう一度やり直してください');
+                session()->flash('flash_message', 'もう一度やり直してください');
+                return back();
             }
         }
 
@@ -244,10 +252,12 @@ class AuctionController extends Controller
                 if($biditem->user_id === $user->id){
                     $bidinfo->trading_status = 1;
                     if($bidinfo->save()){
-                        return back()->with('flash_success', '発送連絡が完了しました');
+                        session()->flash('flash_message', '発送連絡が完了しました');
+                        return back();
                     }
                 }
-                return back()->with('flash_error', 'もう一度やり直してください');
+                session()->flash('flash_message', 'もう一度やり直してください');
+                return back();
             }
         }
 
@@ -257,10 +267,12 @@ class AuctionController extends Controller
                 if($bidinfo->user_id === $user->id){
                     $bidinfo->trading_status = 2;
                     if($bidinfo->save()){
-                        return back()->with('flash_success', '受取連絡が完了しました');
+                        session()->flash('flash_message', '受取連絡が完了しました');
+                        return back();
                     }
                 }
-                return back()->with('flash_error', 'もう一度やり直してください');
+                session()->flash('flash_message', 'もう一度やり直してください');
+                return back();
             }
         }
     }
