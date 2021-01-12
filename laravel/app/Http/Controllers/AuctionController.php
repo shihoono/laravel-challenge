@@ -95,8 +95,11 @@ class AuctionController extends Controller
 
         $bidrequests = Bidrequest::where('biditem_id', $id)->orderBy('created_at', 'desc')->get();
 
-        $currentTime = new Carbon('now');
-        if($currentTime > $biditem->endtime && $biditem->finished === 0){
+        $now = new Carbon('now');
+        $currentTime = $now->format('Y-n-d H:i:s');
+        $endTime = $biditem->endtime;
+
+        if($currentTime > $endTime && $biditem->finished === 0){
             $newBidinfo = New Bidinfo;
             $biditem->finished = 1;
             $biditem->save();
@@ -119,6 +122,8 @@ class AuctionController extends Controller
             'user' => $user,
             'bidrequests' => $bidrequests,
             'bidinfo' => $bidinfo,
+            'currentTime' => $currentTime,
+            'endTime' => $endTime,
         ]);
     }
 

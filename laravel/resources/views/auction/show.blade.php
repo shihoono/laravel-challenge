@@ -42,6 +42,9 @@
         </tr>
     </table>
 
+    <h4>終了まで</h4>
+	<p id="countdownTimerDisplay"></p>
+
     <h4>落札情報</h4>
     @if($bidinfo->isNotEmpty())
         <table class="table table-striped" style="margin-bottom:40px;">
@@ -93,4 +96,12 @@
     @elseif($bidrequests->isEmpty())
         <p>入札はありません。</p>
     @endif
+ 
+    
+    <script>
+        const endTimeJson = '{{$endTime}}';
+        const nowTimeJson = '{{$currentTime}}';
+    </script>   
+    <script src="{{ asset('/js/countdown.js')}}"></script>
+
 @endsection
