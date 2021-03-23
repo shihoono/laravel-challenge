@@ -1,6 +1,6 @@
-# docker-laravel
+# ミニオークションサイト
 
-- オークションサイト　トップページ（ログインページ）
+- トップページ（ログインページ）
 http://127.0.0.1:10080
 
 - PhpMyAdmin トップページ
@@ -8,7 +8,7 @@ http://127.0.0.1:8080
 
  ### セットアップ手順
 
-1. このリポジトリの feature/auction-base ブランチをチェックアウトする
+1. mainブランチをチェックアウトする
 
 2. docker-compose.yml があるディレクトリで下記のコマンドを実行する
 ```
@@ -43,4 +43,9 @@ $ docker-compose exec app bash
 8. 画像ファイルの表示のため、シンボリックリンクをはる
 ```
 [app] $ php artisan storage:link
+```
+
+9. Usersテーブルのシーダー（最初の管理者ユーザーデータ）を作成する
+```
+[app] $ php artisan make:seeder UsersTableSeeder
 ```
