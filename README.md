@@ -45,7 +45,7 @@ $ docker-compose exec app bash
 [app] $ php artisan storage:link
 ```
 
-9. Usersテーブルのシーダー（最初の管理者ユーザーデータ）を作成する
+9. Usersテーブルのシーダー（最初の管理者ユーザーデータ）を実行する
 ```
-[app] $ php artisan make:seeder UsersTableSeeder
+[app] $ php artisan db:seed
 ```
