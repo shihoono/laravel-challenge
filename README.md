@@ -1,10 +1,6 @@
 # docker-laravel
 
-<<<<<<< HEAD
-- Laravel トップページ
-=======
 - オークションサイト　トップページ（ログインページ）
->>>>>>> fix2/auction-base
 http://127.0.0.1:10080
 
 - PhpMyAdmin トップページ
@@ -44,10 +40,7 @@ $ docker-compose exec app bash
 [app] $ php artisan migrate
 ```
 
-<<<<<<< HEAD
-=======
 8. 画像ファイルの表示のため、シンボリックリンクをはる
 ```
 [app] $ php artisan storage:link
 ```
->>>>>>> fix2/auction-base
