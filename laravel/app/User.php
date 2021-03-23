@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
     /**
@@ -36,4 +36,29 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function biditems()
+    {
+        return $this->hasMany(Biditem::class);
+    }
+
+    public function bidrequests()
+    {
+        return $this->hasMany(Bidrequest::class);
+    }
+
+    public function bidinfo()
+    {
+        return $this->hasMany(Bidinfo::class);
+    }
+
+    public function bidmessages()
+    {
+        return $this->hasMany(Bidmessage::class);
+    }
+
+    public function reviews()
+    {
+        return $this->hasMany(Bidmessage::class);
+    }
 }
