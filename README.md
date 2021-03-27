@@ -16,7 +16,9 @@ https://auction.shiholab.com/login
 - CSS3
 - Bootstrap
 - MySQL8.0
-- Docker
+- Docker/Docker-compose
+- composer1.10
+- Nginx
 - AWS
   - EC2(Amazon Linux2)
   - Route53
