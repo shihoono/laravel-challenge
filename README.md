@@ -27,6 +27,7 @@ https://auction.shiholab.com/login
   - ELB
 
 ## AWS構成図
+![AWS auction-site](https://user-images.githubusercontent.com/64389296/112708005-abc55c00-8ef2-11eb-94f1-a9a16f8488d6.png)
 
 
  ## セットアップ手順
