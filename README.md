@@ -29,6 +29,15 @@ https://auction.shiholab.com/login
 ## AWS構成図
 ![AWS auction-site](https://user-images.githubusercontent.com/64389296/112708097-4887f980-8ef3-11eb-9706-a1e212c093be.png)
 
+## 機能一覧
+- ユーザー登録、ログイン機能
+- 商品出品機能
+  - 画像アップロード
+- 入札機能
+- 取引機能
+  - 発送受取連絡
+  - 取引メッセージ
+- 評価機能
 
  ## セットアップ手順
 
